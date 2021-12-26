@@ -3,6 +3,7 @@ import styles from "./styles.module.scss";
 import React, {FC} from "react";
 import Menu from "../Menu";
 import routes from "../../routes";
+import Breadcrumb from "../Breadcrumb";
 
 const { Header, Sider, Content, Footer } = AntLayout;
 
@@ -24,7 +25,7 @@ const Layout: FC = (props) => {
       </Sider>
       <AntLayout>
         <Header style={{ padding: 0, background: 'white' }}>
-          Header
+          <Breadcrumb routes={routes} />
         </Header>
         <Content style={{ margin: '24px 16px 0' }}>
           <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
