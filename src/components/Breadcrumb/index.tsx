@@ -9,24 +9,25 @@ interface Props {
   routes: RouteItem[] // 路由配置
 }
 
-const dfs = (paths: string[], routes: RouteItem[] = [], depth: number, results: RouteItem[]) => {
+const dfs = (paths: string[], routes: RouteItem[] = [], depth: number, results: RouteItem[]): RouteItem[] => {
   const target = paths[depth - 1];
   if (!target) {
-    return;
+    return results;
   }
 
   for (const route of routes) {
     if (route.pathname.replaceAll('/', '') === target) {
       results.push(route);
-      dfs(paths, route.children, depth + 1, results);
+      return dfs(paths, route.children, depth + 1, results);
     }
   }
+
+  return results;
 }
 
 const renderBreadcrumbItem = (pathname: string, routes: RouteItem[]) => {
   const paths = pathname.split('/').filter(Boolean);
-  const results: RouteItem[] = [];
-  dfs(paths, routes, 1, results);
+  const results = dfs(paths, routes, 1, []);
   return results.map(item => (
     <Item key={item.key}>{item.name}</Item>
   ))
