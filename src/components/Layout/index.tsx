@@ -1,8 +1,8 @@
 import { Layout as AntLayout } from 'antd';
 import styles from "./styles.module.scss";
-import {Menu} from "antd";
-import {UploadOutlined, UserOutlined, VideoCameraOutlined} from "@ant-design/icons";
-import {FC} from "react";
+import React, {FC} from "react";
+import Menu from "../Menu";
+import routes from "../../routes";
 
 const { Header, Sider, Content, Footer } = AntLayout;
 
@@ -20,20 +20,7 @@ const Layout: FC = (props) => {
         }}
       >
         <div className="logo" />
-        <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']}>
-          <Menu.Item key="1" icon={<UserOutlined />}>
-            nav 1
-          </Menu.Item>
-          <Menu.Item key="2" icon={<VideoCameraOutlined />}>
-            nav 2
-          </Menu.Item>
-          <Menu.Item key="3" icon={<UploadOutlined />}>
-            nav 3
-          </Menu.Item>
-          <Menu.Item key="4" icon={<UserOutlined />}>
-            nav 4
-          </Menu.Item>
-        </Menu>
+        <Menu routes={routes} />
       </Sider>
       <AntLayout>
         <Header style={{ padding: 0, background: 'white' }}>
