@@ -20,7 +20,6 @@ const routes: RouteItem[] = [
     pathname: '/staff',
     name: '员工',
     component: StaffList,
-    childrenVisible: false,
     children: [
       {
         key: 'customer',

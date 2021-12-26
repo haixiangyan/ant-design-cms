@@ -1,6 +1,6 @@
 import {FC} from "react";
 import { Breadcrumb as AntBreadcrumb } from "antd";
-import {useLocation} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import {RouteItem} from "../../routes";
 
 const { Item } = AntBreadcrumb;
@@ -28,9 +28,16 @@ const dfs = (paths: string[], routes: RouteItem[] = [], depth: number, results: 
 const renderBreadcrumbItem = (pathname: string, routes: RouteItem[]) => {
   const paths = pathname.split('/').filter(Boolean);
   const results = dfs(paths, routes, 1, []);
-  return results.map(item => (
-    <Item key={item.key}>{item.name}</Item>
-  ))
+  return results.map((item, index) => {
+    const to = paths.filter(Boolean).slice(0, index + 1).join('/');
+    return (
+      <Item key={item.key}>
+        <Link to={to}>
+          {item.name}
+        </Link>
+      </Item>
+    )
+  })
 }
 
 const Breadcrumb: FC<Props> = (props) => {
